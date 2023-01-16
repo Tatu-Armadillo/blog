@@ -6,16 +6,18 @@ create table traveler(
     id_traveler bigint primary key auto_increment,
     name varchar(150) not null,
     phone varchar(13) not null,
+    email varchar(150) not null,
     image_link varchar(500),
-    image blob,
-    email varchar(150) not null
+    image mediumblob
 );
 
 create table destinations(
     id_destinations bigint primary key auto_increment,
-    name varchar(100) not null,
+    country varchar(100) not null,
+    state varchar(100) not null,
+    city varchar(100) not null,
     image_link varchar(500),
-    image blob
+    image mediumblob
 );
 
 create table news(
@@ -25,7 +27,7 @@ create table news(
     subtitle varchar(100),
     date_time datetime not null,
     image_link varchar(500),
-    image blob,
+    image mediumblob,
     destinations bigint,
     traveler bigint
 );

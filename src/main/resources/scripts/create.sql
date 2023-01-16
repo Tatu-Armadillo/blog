@@ -6,7 +6,7 @@ create table traveler(
     id_traveler bigint primary key auto_increment,
     name varchar(150) not null,
     phone varchar(13) not null,
-    email varchar(150) not null,
+    email varchar(150) unique not null,
     image_link varchar(500),
     image mediumblob
 );
@@ -53,3 +53,5 @@ alter table news add constraint fk_destinations_news foreign key (destinations) 
 alter table comments add constraint fk_traveler_comments foreign key (traveler) references traveler (id_traveler);
 alter table comments add constraint fk_news_comments foreign key (news) references news (id_news);
 alter table events add constraint fk_destinations_events foreign key (destinations) references destinations (id_destinations);
+
+insert into traveler (name, phone, email) values ("Club Travle", "4002-8922", "ehFunkDoJapones.@QueVaiDarPS2.com");

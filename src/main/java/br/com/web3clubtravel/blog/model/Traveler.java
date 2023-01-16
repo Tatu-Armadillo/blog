@@ -33,8 +33,7 @@ public class Traveler {
 
     public Traveler() { }
 
-    public Traveler(Long idTraveler, String name, String phone, String email) {
-        this.idTraveler = idTraveler;
+    public Traveler(String name, String phone, String email) {
         this.name = name;
         this.phone = phone;
         this.email = email;

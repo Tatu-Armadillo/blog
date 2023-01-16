@@ -42,7 +42,7 @@ public class News {
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "destinations", foreignKey = @ForeignKey(name = "fk_destinations_news"))
-    private Destinations destinations;
+    private Destinations destination;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "traveler", foreignKey = @ForeignKey(name = "fk_traveler_news"))
@@ -50,14 +50,13 @@ public class News {
 
     public News() { }
 
-    public News(Long idNews, String title, String text, String subtitle, LocalDateTime dateTime,
-            Destinations destinations, Traveler traveler) {
-        this.idNews = idNews;
+    public News(String title, String text, String subtitle, LocalDateTime dateTime,
+            Destinations destination, Traveler traveler) {
         this.title = title;
         this.text = text;
         this.subtitle = subtitle;
         this.dateTime = dateTime;
-        this.destinations = destinations;
+        this.destination = destination;
         this.traveler = traveler;
     }
 
@@ -117,12 +116,12 @@ public class News {
         this.image = image;
     }
 
-    public Destinations getDestinations() {
-        return destinations;
+    public Destinations getDestination() {
+        return destination;
     }
 
-    public void setDestinations(Destinations destinations) {
-        this.destinations = destinations;
+    public void setDestination(Destinations destination) {
+        this.destination = destination;
     }
 
     public Traveler getTraveler() {

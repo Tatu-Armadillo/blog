@@ -33,14 +33,11 @@ public class Destinations {
 
     public Destinations() { }
 
-    public Destinations(Long idDestinations, String country, String state, String city, String imageLink,
-            byte[] image) {
-        this.idDestinations = idDestinations;
+    public Destinations(String country, String state, String city, String imageLink) {
         this.country = country;
         this.state = state;
         this.city = city;
         this.imageLink = imageLink;
-        this.image = image;
     }
 
     public Long getIdDestinations() {

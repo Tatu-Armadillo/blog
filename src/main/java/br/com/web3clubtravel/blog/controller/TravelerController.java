@@ -26,7 +26,7 @@ public class TravelerController {
 
     @GetMapping
     public ResponseEntity<ResponseBase<TravelerDto>> getKingTraveler() {
-        var response = this.travelerService.getKingTraveler();
+        final var response = this.travelerService.getKingTraveler();
         final var base = ResponseBase.of(response);
         return ResponseEntity.ok(base);
     }

@@ -28,5 +28,11 @@ public class TravelerService {
                 .orElse(new Traveler("Club Travel", "4002-8922", "ehFunkDoJapones.@QueVaiDarPS2.com"));
         return TravelerDto.of(traveler);
     }
+    
+    public Traveler getTraveler() {
+        var traveler = this.travelerRepository.findById(1L)
+                .orElse(new Traveler("Club Travel", "4002-8922", "ehFunkDoJapones.@QueVaiDarPS2.com"));
+        return traveler;
+    }
 
 }

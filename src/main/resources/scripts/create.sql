@@ -13,11 +13,40 @@ create table traveler(
 
 create table destinations(
     id_destinations bigint primary key auto_increment,
-    country varchar(100) not null,
-    state varchar(100) not null,
-    city varchar(100) not null,
+    reference varchar(100),
+    image_link varchar(500),
+    image mediumblob,
+    city bigint
+);
+
+create table country(
+    id_country bigint primary key auto_increment,
+    portuguese_name varchar(100) not null,
+    english_name varchar(100) not null,
     image_link varchar(500),
     image mediumblob
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
+
+create table region(
+    id_region bigint primary key auto_increment,
+    name varchar(100) not null,
+    uf varchar(2) not null
+);
+
+create table state(
+    id_state bigint primary key auto_increment,
+    uf_code bigint unique,
+    name varchar(100) not null,
+    uf varchar(2) not null,
+    region bigint,
+    country bigint
+);
+
+create table city(
+    id_city bigint primary key auto_increment,
+    ibge_code varchar(7) not null,
+    name varchar(100) not null,
+    state bigint
 );
 
 create table news(
@@ -48,10 +77,14 @@ create table events (
     destinations bigint
 );
 
+alter table destinations add constraint fk_city_destinations foreign key (city) references city (id_city);
 alter table news add constraint fk_traveler_news foreign key (traveler) references traveler (id_traveler);
 alter table news add constraint fk_destinations_news foreign key (destinations) references destinations (id_destinations);
 alter table comments add constraint fk_traveler_comments foreign key (traveler) references traveler (id_traveler);
 alter table comments add constraint fk_news_comments foreign key (news) references news (id_news);
 alter table events add constraint fk_destinations_events foreign key (destinations) references destinations (id_destinations);
+alter table state add constraint fk_country_state foreign key (country) references country (id_country);
+alter table state add constraint fk_region_state foreign key (region) references region (id_region);
+alter table city add constraint fk_state_city foreign key (state) references state (uf_code);
 
 insert into traveler (name, phone, email) values ("Club Travle", "4002-8922", "ehFunkDoJapones.@QueVaiDarPS2.com");

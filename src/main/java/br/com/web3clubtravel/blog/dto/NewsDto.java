@@ -14,8 +14,7 @@ public class NewsDto {
     private DestinationsDto destinations;
     private TravelerDto traveler;
 
-    public NewsDto() {
-    }
+    public NewsDto() { }
 
     public NewsDto(String title, String text, String subtitle, String imageLink, 
     DestinationsDto destinations,

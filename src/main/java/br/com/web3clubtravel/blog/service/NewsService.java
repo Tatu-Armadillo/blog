@@ -32,8 +32,8 @@ public class NewsService {
     }
 
     public NewsDto save(NewsDto dto) {
-        final var destination = this.destinationService.findByCityName(dto.getDestinations().getCity().getName());
-        final var traveler = this.travelerService.getTraveler();
+        final var destination = this.destinationService.findByNameCity(dto.getDestinations().getCity());
+        final var traveler = this.travelerService.getKingTraveler();
         final var news = new News(
                 dto.getTitle(),
                 dto.getText(),

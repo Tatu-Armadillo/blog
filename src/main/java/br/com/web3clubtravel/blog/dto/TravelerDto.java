@@ -6,8 +6,10 @@ public class TravelerDto {
     private String name;
     private String phone;
     private String email;
+    private UserDto userDto;
 
-    public TravelerDto() {}
+    public TravelerDto() {
+    }
 
     public TravelerDto(String name, String phone, String email) {
         this.name = name;
@@ -15,8 +17,19 @@ public class TravelerDto {
         this.email = email;
     }
 
+    public TravelerDto(String name, String phone, String email, UserDto userDto) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.userDto = userDto;
+    }
+
     public static TravelerDto of(Traveler traveler) {
-        return new TravelerDto(traveler.getName(), traveler.getPhone(), traveler.getEmail());
+        return new TravelerDto(
+                traveler.getName(),
+                traveler.getPhone(),
+                traveler.getEmail(),
+                UserDto.of(traveler.getUser()));
     }
 
     public String getName() {
@@ -41,6 +54,14 @@ public class TravelerDto {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public UserDto getUserDto() {
+        return userDto;
+    }
+
+    public void setUserDto(UserDto userDto) {
+        this.userDto = userDto;
     }
 
 }

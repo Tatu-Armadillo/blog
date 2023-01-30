@@ -11,6 +11,7 @@ import br.com.web3clubtravel.blog.model.Destinations;
 public interface DestinationsRepository extends JpaRepository<Destinations, Long> {
 
     @Query("SELECT destination FROM Destinations destination "
-            + " WHERE destination.city = :city")
-    Destinations findByCityName(@Param("city") String city);
+            + " INNER JOIN city c "
+            + " WHERE c.name = :city ")
+    Destinations findByNameCity(@Param("city") String city);
 }

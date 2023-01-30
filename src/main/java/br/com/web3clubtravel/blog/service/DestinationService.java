@@ -16,8 +16,8 @@ public class DestinationService {
         this.destinationsRepository = destinationsRepository;
     }
 
-    public Destinations findByCityName(final String city) {
-        return this.destinationsRepository.findByCityName(city);
+    public Destinations findByNameCity(final String city) {
+        return this.destinationsRepository.findByNameCity(city);
     }
 
 }

@@ -8,7 +8,14 @@ create table traveler(
     phone varchar(13) not null,
     email varchar(150) unique not null,
     image_link varchar(500),
-    image mediumblob
+    image mediumblob,
+    user bigint
+);
+
+create table users(
+    id_user bigint primary key auto_increment,
+    user_name varchar(255) unique not null,
+    password varchar(255) not null
 );
 
 create table destinations(
@@ -77,6 +84,7 @@ create table events (
     destinations bigint
 );
 
+alter table traveler add constraint fk_traveler_users foreign key (user) references users (id_user);
 alter table destinations add constraint fk_city_destinations foreign key (city) references city (id_city);
 alter table news add constraint fk_traveler_news foreign key (traveler) references traveler (id_traveler);
 alter table news add constraint fk_destinations_news foreign key (destinations) references destinations (id_destinations);
@@ -87,4 +95,5 @@ alter table state add constraint fk_country_state foreign key (country) referenc
 alter table state add constraint fk_region_state foreign key (region) references region (id_region);
 alter table city add constraint fk_state_city foreign key (state) references state (uf_code);
 
-insert into traveler (name, phone, email) values ("Club Travle", "4002-8922", "ehFunkDoJapones.@QueVaiDarPS2.com");
+insert into users (user_name, password) values ("king", "123456");
+insert into traveler (name, phone, email, user) values ("Club Travle", "4002-8922", "ehFunkDoJapones.@QueVaiDarPS2.com", 1);

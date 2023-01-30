@@ -1,10 +1,13 @@
 package br.com.web3clubtravel.blog.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -31,12 +34,23 @@ public class Traveler {
     @Column(name = "image")
     private byte[] image;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "user", referencedColumnName = "id_user")
+    private User user;
+
     public Traveler() { }
 
     public Traveler(String name, String phone, String email) {
         this.name = name;
         this.phone = phone;
         this.email = email;
+    }
+    
+    public Traveler(String name, String phone, String email, User user) {
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.user = user;
     }
 
     public Long getIdTraveler() {
@@ -85,6 +99,14 @@ public class Traveler {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
     }
 
 }

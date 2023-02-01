@@ -38,8 +38,8 @@ public class TravelerController {
     @Transactional
     public ResponseEntity<ResponseBase<TravelerDto>> save(
             @RequestBody final TravelerDto dto,
-            @RequestParam(required = true) final Boolean iContact) {
-        final var response = this.travelerService.save(dto, iContact);
+            @RequestParam(required = true) final Boolean isContact) {
+        final var response = this.travelerService.save(dto, isContact);
         final var base = ResponseBase.of(response);
         return ResponseEntity.ok(base);
     }

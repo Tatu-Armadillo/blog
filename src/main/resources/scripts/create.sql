@@ -4,18 +4,17 @@ use club_travel;
 
 create table traveler(
     id_traveler bigint primary key auto_increment,
-    name varchar(150) not null,
-    phone varchar(13) not null,
-    email varchar(150) unique not null,
     image_link varchar(500),
     image mediumblob,
+    contact bigint,
     user bigint
 );
 
-create table users(
-    id_user bigint primary key auto_increment,
-    user_name varchar(255) unique not null,
-    password varchar(255) not null
+create table contact(
+    id_contact bigint primary key auto_increment,
+    name varchar(150) not null,
+    phone varchar(13) not null,
+    email varchar(150) unique not null
 );
 
 create table destinations(
@@ -84,7 +83,23 @@ create table events (
     destinations bigint
 );
 
-alter table traveler add constraint fk_traveler_users foreign key (user) references users (id_user);
+create table users(
+    id_user bigint primary key auto_increment,
+    user_name varchar(255) unique not null,
+    password varchar(255) not null
+);
+
+create table permission(
+    id_permission bigint primary key auto_increment,
+    description varchar(100)
+);
+
+create table user_permission(
+    id_user bigint,
+    id_permission bigint,
+    primary key ( id_user, id_permission)
+);
+
 alter table destinations add constraint fk_city_destinations foreign key (city) references city (id_city);
 alter table news add constraint fk_traveler_news foreign key (traveler) references traveler (id_traveler);
 alter table news add constraint fk_destinations_news foreign key (destinations) references destinations (id_destinations);
@@ -95,5 +110,10 @@ alter table state add constraint fk_country_state foreign key (country) referenc
 alter table state add constraint fk_region_state foreign key (region) references region (id_region);
 alter table city add constraint fk_state_city foreign key (state) references state (uf_code);
 
-insert into users (user_name, password) values ("king", "123456");
-insert into traveler (name, phone, email, user) values ("Club Travle", "4002-8922", "ehFunkDoJapones.@QueVaiDarPS2.com", 1);
+alter table user_permission add constraint fk_user_permission_user foreign key (id_user) references users (id_user);
+alter table user_permission add constraint fk_user_permission_permission foreign key (id_permission) references permission (id_permission);
+alter table traveler add constraint fk_contact_traveler foreign key (contact) references contact (id_contact);
+alter table traveler add constraint fk_traveler_users foreign key (user) references users (id_user);
+
+-- insert into users (user_name, password) values ("king", "123456");
+-- insert into traveler (name, phone, email, user) values ("Club Travle", "4002-8922", "ehFunkDoJapones.@QueVaiDarPS2.com", 1);

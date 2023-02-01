@@ -19,15 +19,6 @@ public class Traveler {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idTraveler;
 
-    @Column(name = "name")
-    private String name;
-
-    @Column(name = "phone")
-    private String phone;
-
-    @Column(name = "email")
-    private String email;
-
     @Column(name = "image_link")
     private String imageLink;
 
@@ -35,23 +26,14 @@ public class Traveler {
     private byte[] image;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact", referencedColumnName = "id_contact")
+    private Contact contact;
+   
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user", referencedColumnName = "id_user")
     private User user;
 
     public Traveler() { }
-
-    public Traveler(String name, String phone, String email) {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-    }
-    
-    public Traveler(String name, String phone, String email, User user) {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.user = user;
-    }
 
     public Long getIdTraveler() {
         return idTraveler;
@@ -59,30 +41,6 @@ public class Traveler {
 
     public void setIdTraveler(Long idTraveler) {
         this.idTraveler = idTraveler;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
     }
 
     public String getImageLink() {
@@ -99,6 +57,14 @@ public class Traveler {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 
     public void setUser(User user) {

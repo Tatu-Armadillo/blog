@@ -25,9 +25,9 @@ public class TravelerDto {
 
     public static TravelerDto of(Traveler traveler) {
         return new TravelerDto(
-                traveler.getName(),
-                traveler.getPhone(),
-                traveler.getEmail(),
+                traveler.getContact().getName(),
+                traveler.getContact().getPhone(),
+                traveler.getContact().getEmail(),
                 UserDto.of(traveler.getUser()));
     }
 

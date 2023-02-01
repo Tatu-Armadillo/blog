@@ -19,10 +19,10 @@ public class TravelerService {
         this.travelerRepository = travelerRepository;
     }
 
-    public TravelerDto save(final TravelerDto dto, Boolean iContact) {
-        final var traveler = new Traveler(dto.getName(), dto.getPhone(), dto.getEmail());
+    public TravelerDto save(final TravelerDto dto, Boolean isContact) {
+        final var traveler = new Traveler();
 
-        if (!iContact) {
+        if (!isContact) {
             traveler.setUser(createUserDto(dto));
         }
 
@@ -55,14 +55,14 @@ public class TravelerService {
     // TODO metodo auxiliar para preencher as noticias
     public TravelerDto getKingTravelerDto() {
         final var traveler = this.travelerRepository.findById(1L)
-                .orElse(new Traveler("Club Travel", "4002-8922", "ehFunkDoJapones.@QueVaiDarPS2.com"));
+                .orElse(new Traveler());
         return TravelerDto.of(traveler);
     }
 
     // TODO metodo auxiliar para preencher as noticias
     public Traveler getKingTraveler() {
         final var traveler = this.travelerRepository.findById(1L)
-                .orElse(new Traveler("Club Travel", "4002-8922", "ehFunkDoJapones.@QueVaiDarPS2.com"));
+                .orElse(new Traveler());
         return traveler;
     }
 

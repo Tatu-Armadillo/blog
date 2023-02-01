@@ -12,19 +12,16 @@ public class NewsDto {
     private LocalDateTime dateTime;
     private String imageLink;
     private DestinationsDto destinations;
-    private TravelerDto traveler;
 
     public NewsDto() { }
 
     public NewsDto(String title, String text, String subtitle, String imageLink, 
-    DestinationsDto destinations,
-            TravelerDto traveler) {
+    DestinationsDto destinations) {
         this.title = title;
         this.text = text;
         this.subtitle = subtitle;
         this.imageLink = imageLink;
         this.destinations = destinations;
-        this.traveler = traveler;
     }
 
     public static NewsDto of(News news) {
@@ -33,8 +30,7 @@ public class NewsDto {
                 news.getText(),
                 news.getSubtitle(),
                 news.getImageLink(),
-                DestinationsDto.of(news.getDestination()), 
-                TravelerDto.of(news.getTraveler()));
+                DestinationsDto.of(news.getDestination()));
     }
 
     public String getTitle() {
@@ -85,11 +81,4 @@ public class NewsDto {
         this.destinations = destinations;
     }
 
-    public TravelerDto getTraveler() {
-        return traveler;
-    }
-
-    public void setTraveler(TravelerDto traveler) {
-        this.traveler = traveler;
-    }
 }

@@ -35,6 +35,11 @@ public class Traveler {
 
     public Traveler() { }
 
+    public Traveler(Contact contact, User user) {
+        this.contact = contact;
+        this.user = user;
+    }
+
     public Long getIdTraveler() {
         return idTraveler;
     }

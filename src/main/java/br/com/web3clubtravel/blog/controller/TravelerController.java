@@ -26,7 +26,8 @@ public class TravelerController {
     }
 
     @GetMapping
-    public ResponseEntity<ResponseBase<TravelerDto>> getTraveler(@RequestParam(required = true, defaultValue = "king") final String username) {
+    public ResponseEntity<ResponseBase<TravelerDto>> getTraveler(
+            @RequestParam(required = true, defaultValue = "king") final String username) {
         final var traveler = this.travelerService.getTraveler(username);
         final var response = TravelerDto.of(traveler);
         final var base = ResponseBase.of(response);
@@ -36,8 +37,9 @@ public class TravelerController {
     @PostMapping
     @Transactional
     public ResponseEntity<ResponseBase<TravelerDto>> save(
-            @RequestBody final TravelerDto dto) {
-        final var response = this.travelerService.save(dto);
+            @RequestBody final TravelerDto dto,
+            @RequestParam(required = true) final Boolean iContact) {
+        final var response = this.travelerService.save(dto, iContact);
         final var base = ResponseBase.of(response);
         return ResponseEntity.ok(base);
     }

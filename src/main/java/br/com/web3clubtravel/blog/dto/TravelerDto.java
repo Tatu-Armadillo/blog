@@ -8,8 +8,7 @@ public class TravelerDto {
     private String email;
     private UserDto userDto;
 
-    public TravelerDto() {
-    }
+    public TravelerDto() { }
 
     public TravelerDto(String name, String phone, String email) {
         this.name = name;

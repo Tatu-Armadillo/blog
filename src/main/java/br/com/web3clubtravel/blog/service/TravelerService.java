@@ -19,13 +19,14 @@ public class TravelerService {
         this.travelerRepository = travelerRepository;
     }
 
-    public TravelerDto save(final TravelerDto dto) {
+    public TravelerDto save(final TravelerDto dto, Boolean iContact) {
         final var traveler = new Traveler(dto.getName(), dto.getPhone(), dto.getEmail());
 
-        traveler.setUser(createUserDto(dto));
+        if (!iContact) {
+            traveler.setUser(createUserDto(dto));
+        }
 
         this.travelerRepository.save(traveler);
-
         final var response = this.getTraveler(traveler.getUser().getUsername());
 
         return TravelerDto.of(response);

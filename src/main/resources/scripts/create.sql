@@ -115,6 +115,9 @@ alter table user_permission add constraint fk_user_permission_permission foreign
 alter table traveler add constraint fk_contact_traveler foreign key (contact) references contact (id_contact);
 alter table traveler add constraint fk_traveler_users foreign key (user) references users (id_user);
 
+insert into permission (description) values ("administrator"), ("traveler");
 insert into users (user_name, password) values ("king", "123456");
+insert into user_permission (id_user, id_permission) values (1, 1);
+insert into user_permission (id_user, id_permission) values (1, 2);
 insert into contact (name, phone, email) values ("web3travelclub", "4002-8922", "web3travelclub.@email.com");
 insert into traveler (contact, user) values (1, 1);

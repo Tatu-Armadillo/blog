@@ -59,12 +59,24 @@ create table news(
     id_news bigint primary key auto_increment,
     title varchar(500) not null,
     text varchar(500) not null,
-    subtitle varchar(100),
     date_time datetime not null,
     image_link varchar(500),
+    image mediumblob    
+);
+
+create table sub_news(
+    id_sub_news bigint primary key auto_increment,
+    sub_title varchar(500),
+    text varchar(500) not null,
+    image_link varchar(500),
     image mediumblob,
-    destinations bigint,
-    traveler bigint
+    news bigint
+);
+
+create table destination_news(
+    id_destination_news bigint primary key auto_increment,
+    news bigint,
+    destination bigint
 );
 
 create table comments (
@@ -101,8 +113,9 @@ create table user_permission(
 );
 
 alter table destinations add constraint fk_city_destinations foreign key (city) references city (id_city);
-alter table news add constraint fk_traveler_news foreign key (traveler) references traveler (id_traveler);
-alter table news add constraint fk_destinations_news foreign key (destinations) references destinations (id_destinations);
+alter table sub_news add constraint fk_news_sub_news foreign key (news) references news (id_news);
+alter table destination_news add constraint fk_destination_news_news foreign key (news) references news (id_news);
+alter table destination_news add constraint fk_destination_news_destinations foreign key (destination) references destinations (id_destinations);
 alter table comments add constraint fk_traveler_comments foreign key (traveler) references traveler (id_traveler);
 alter table comments add constraint fk_news_comments foreign key (news) references news (id_news);
 alter table events add constraint fk_destinations_events foreign key (destinations) references destinations (id_destinations);

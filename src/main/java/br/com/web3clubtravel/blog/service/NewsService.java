@@ -38,9 +38,7 @@ public class NewsService {
                 dto.getTitle(),
                 dto.getText(),
                 dto.getSubtitle(),
-                LocalDateTime.now(),
-                destination,
-                traveler);
+                LocalDateTime.now());
         final var response = this.newsRepository.save(news);
         return NewsDto.of(response);
     }

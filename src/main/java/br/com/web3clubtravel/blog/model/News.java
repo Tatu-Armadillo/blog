@@ -1,16 +1,17 @@
 package br.com.web3clubtravel.blog.model;
 
 import java.time.LocalDateTime;
+import java.util.Set;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
-import jakarta.persistence.ForeignKey;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -40,24 +41,17 @@ public class News {
     @Column(name = "image")
     private byte[] image;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "destinations", foreignKey = @ForeignKey(name = "fk_destinations_news"))
-    private Destinations destination;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "traveler", foreignKey = @ForeignKey(name = "fk_traveler_news"))
-    private Traveler traveler;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "destination_news", joinColumns = @JoinColumn(name="news"), inverseJoinColumns = @JoinColumn(name = "destination"))
+    private Set<Destinations> destinations;
 
     public News() { }
 
-    public News(String title, String text, String subtitle, LocalDateTime dateTime,
-            Destinations destination, Traveler traveler) {
+    public News(String title, String text, String subtitle, LocalDateTime dateTime) {
         this.title = title;
         this.text = text;
         this.subtitle = subtitle;
         this.dateTime = dateTime;
-        this.destination = destination;
-        this.traveler = traveler;
     }
 
     public Long getIdNews() {
@@ -114,22 +108,6 @@ public class News {
 
     public void setImage(byte[] image) {
         this.image = image;
-    }
-
-    public Destinations getDestination() {
-        return destination;
-    }
-
-    public void setDestination(Destinations destination) {
-        this.destination = destination;
-    }
-
-    public Traveler getTraveler() {
-        return traveler;
-    }
-
-    public void setTraveler(Traveler traveler) {
-        this.traveler = traveler;
     }
 
 }

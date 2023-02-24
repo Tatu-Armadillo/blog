@@ -35,4 +35,63 @@ public class SubNews {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "news", foreignKey = @ForeignKey(name = "fk_sub_news_news"))
     private News news;
+
+    public SubNews() { }
+
+    public SubNews(String subTitle, String text, String imageLink, byte[] image, News news) {
+        this.subTitle = subTitle;
+        this.text = text;
+        this.imageLink = imageLink;
+        this.image = image;
+        this.news = news;
+    }
+
+    public Long getIdSubNews() {
+        return idSubNews;
+    }
+
+    public void setIdSubNews(Long idSubNews) {
+        this.idSubNews = idSubNews;
+    }
+
+    public String getSubTitle() {
+        return subTitle;
+    }
+
+    public void setSubTitle(String subTitle) {
+        this.subTitle = subTitle;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
+    public News getNews() {
+        return news;
+    }
+
+    public void setNews(News news) {
+        this.news = news;
+    }
+
 }

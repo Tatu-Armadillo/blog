@@ -2,6 +2,7 @@ package br.com.web3clubtravel.blog.dto;
 
 import java.time.LocalDateTime;
 
+import br.com.web3clubtravel.blog.model.Destinations;
 import br.com.web3clubtravel.blog.model.News;
 
 public class NewsDto {
@@ -30,7 +31,7 @@ public class NewsDto {
                 news.getText(),
                 news.getSubtitle(),
                 news.getImageLink(),
-                DestinationsDto.of(news.getDestination()));
+                DestinationsDto.of(new Destinations()));
     }
 
     public String getTitle() {

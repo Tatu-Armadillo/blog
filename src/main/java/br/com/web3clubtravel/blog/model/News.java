@@ -29,9 +29,6 @@ public class News {
     @Column(name = "text")
     private String text;
 
-    @Column(name = "subtitle")
-    private String subtitle;
-
     @Column(name = "date_time")
     private LocalDateTime dateTime;
 
@@ -47,10 +44,9 @@ public class News {
 
     public News() { }
 
-    public News(String title, String text, String subtitle, LocalDateTime dateTime) {
+    public News(String title, String text, LocalDateTime dateTime) {
         this.title = title;
         this.text = text;
-        this.subtitle = subtitle;
         this.dateTime = dateTime;
     }
 
@@ -76,14 +72,6 @@ public class News {
 
     public void setText(String text) {
         this.text = text;
-    }
-
-    public String getSubtitle() {
-        return subtitle;
-    }
-
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
     }
 
     public LocalDateTime getDateTime() {

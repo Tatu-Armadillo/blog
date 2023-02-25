@@ -2,36 +2,33 @@ package br.com.web3clubtravel.blog.dto;
 
 import java.time.LocalDateTime;
 
-import br.com.web3clubtravel.blog.model.Destinations;
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import br.com.web3clubtravel.blog.model.News;
 
 public class NewsDto {
 
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime dateTime;
     private String title;
     private String text;
-    private String subtitle;
-    private LocalDateTime dateTime;
     private String imageLink;
-    private DestinationsDto destinations;
-
+    
     public NewsDto() { }
 
-    public NewsDto(String title, String text, String subtitle, String imageLink, 
-    DestinationsDto destinations) {
+    public NewsDto(String title, String text, LocalDateTime dateTime, String imageLink) {
         this.title = title;
         this.text = text;
-        this.subtitle = subtitle;
+        this.dateTime = dateTime;
         this.imageLink = imageLink;
-        this.destinations = destinations;
     }
 
     public static NewsDto of(News news) {
         return new NewsDto(
                 news.getTitle(),
                 news.getText(),
-                news.getSubtitle(),
-                news.getImageLink(),
-                DestinationsDto.of(new Destinations()));
+                news.getDateTime(),
+                news.getImageLink());
     }
 
     public String getTitle() {
@@ -50,14 +47,6 @@ public class NewsDto {
         this.text = text;
     }
 
-    public String getSubtitle() {
-        return subtitle;
-    }
-
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
-    }
-
     public LocalDateTime getDateTime() {
         return dateTime;
     }
@@ -72,14 +61,6 @@ public class NewsDto {
 
     public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
-    }
-
-    public DestinationsDto getDestinations() {
-        return destinations;
-    }
-
-    public void setDestinations(DestinationsDto destinations) {
-        this.destinations = destinations;
     }
 
 }

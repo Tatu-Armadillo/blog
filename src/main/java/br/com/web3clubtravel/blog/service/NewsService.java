@@ -15,16 +15,10 @@ import br.com.web3clubtravel.blog.repository.NewsRepository;
 public class NewsService {
 
     private final NewsRepository newsRepository;
-    private final DestinationService destinationService;
-    private final TravelerService travelerService;
 
     @Autowired
-    public NewsService(final NewsRepository newsRepository,
-            final DestinationService destinationService,
-            final TravelerService travelerService) {
+    public NewsService(final NewsRepository newsRepository) {
         this.newsRepository = newsRepository;
-        this.destinationService = destinationService;
-        this.travelerService = travelerService;
     }
 
     public Page<NewsDto> listNews(Pageable pageable) {
@@ -32,12 +26,9 @@ public class NewsService {
     }
 
     public NewsDto save(NewsDto dto) {
-        final var destination = this.destinationService.findByNameCity(dto.getDestinations().getCity());
-        final var traveler = this.travelerService.getKingTraveler();
         final var news = new News(
                 dto.getTitle(),
                 dto.getText(),
-                dto.getSubtitle(),
                 LocalDateTime.now());
         final var response = this.newsRepository.save(news);
         return NewsDto.of(response);

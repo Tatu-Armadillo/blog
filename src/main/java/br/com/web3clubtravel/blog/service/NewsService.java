@@ -29,7 +29,8 @@ public class NewsService {
         final var news = new News(
                 dto.getTitle(),
                 dto.getText(),
-                LocalDateTime.now());
+                LocalDateTime.now(),
+                dto.getImageLink());
         final var response = this.newsRepository.save(news);
         return NewsDto.of(response);
     }

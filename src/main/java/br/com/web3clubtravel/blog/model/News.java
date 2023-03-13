@@ -39,15 +39,16 @@ public class News {
     private byte[] image;
 
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "destination_news", joinColumns = @JoinColumn(name="news"), inverseJoinColumns = @JoinColumn(name = "destination"))
+    @JoinTable(name = "destination_news", joinColumns = @JoinColumn(name = "news"), inverseJoinColumns = @JoinColumn(name = "destination"))
     private Set<Destinations> destinations;
 
     public News() { }
 
-    public News(String title, String text, LocalDateTime dateTime) {
+    public News(String title, String text, LocalDateTime dateTime, String imageLink) {
         this.title = title;
         this.text = text;
         this.dateTime = dateTime;
+        this.imageLink = imageLink;
     }
 
     public Long getIdNews() {

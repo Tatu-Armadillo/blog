@@ -26,7 +26,7 @@ public class ContactService {
 
     public Contact getContact(final String name) {
         return this.contactRepository.findContactByName(name)
-                .orElseThrow(() -> new NegocioException("Contact não encontrado"));
+                .orElseThrow(() -> new NegocioException("Contact not found"));
     }
 
 }

@@ -19,7 +19,7 @@ create table contact(
 
 create table destinations(
     id_destinations bigint primary key auto_increment,
-    reference varchar(100),
+    reference varchar(5000), -- Transform text string into fields
     image_link varchar(500),
     image mediumblob,
     city bigint

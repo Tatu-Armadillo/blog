@@ -5,23 +5,21 @@ import org.springframework.stereotype.Service;
 
 import br.com.web3clubtravel.blog.dto.DestinationsDto;
 import br.com.web3clubtravel.blog.exception.NegocioException;
-import br.com.web3clubtravel.blog.model.City;
 import br.com.web3clubtravel.blog.model.Destinations;
-import br.com.web3clubtravel.blog.repository.CityRepository;
 import br.com.web3clubtravel.blog.repository.DestinationsRepository;
 
 @Service
 public class DestinationService {
 
     private final DestinationsRepository destinationsRepository;
-    private final CityRepository cityRepository;
+    private final CityService cityService;
 
     @Autowired
     public DestinationService(
             final DestinationsRepository destinationsRepository,
-            final CityRepository cityRepository) {
+            final CityService cityService) {
         this.destinationsRepository = destinationsRepository;
-        this.cityRepository = cityRepository;
+        this.cityService = cityService;
     }
 
     public Destinations findByNameCity(final String city) {
@@ -30,13 +28,8 @@ public class DestinationService {
         return destination;
     }
 
-    public City getCity(final String city) {
-        return this.cityRepository.findByNameCity(city)
-                .orElseThrow(() -> new NegocioException("City not found"));
-    }
-
     public Destinations save(final DestinationsDto dto) {
-        final var city = this.getCity(dto.getCity());
+        final var city = this.cityService.getCity(dto.getCity());
         final var destination = new Destinations(dto.transformAttributesInReference(), dto.getImageLink(), city);
         this.destinationsRepository.save(destination);
         return destination;

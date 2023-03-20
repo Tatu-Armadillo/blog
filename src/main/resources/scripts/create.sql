@@ -92,7 +92,7 @@ create table events (
     start_date date not null,
     end_date date not null,
     description varchar(300) not null,
-    destinations bigint
+    city bigint
 );
 
 create table users(
@@ -118,7 +118,7 @@ alter table destination_news add constraint fk_destination_news_news foreign key
 alter table destination_news add constraint fk_destination_news_destinations foreign key (destination) references destinations (id_destinations);
 alter table comments add constraint fk_traveler_comments foreign key (traveler) references traveler (id_traveler);
 alter table comments add constraint fk_news_comments foreign key (news) references news (id_news);
-alter table events add constraint fk_destinations_events foreign key (destinations) references destinations (id_destinations);
+alter table events add constraint fk_city_events foreign key (city) references city (id_city);
 alter table state add constraint fk_country_state foreign key (country) references country (id_country);
 alter table state add constraint fk_region_state foreign key (region) references region (id_region);
 alter table city add constraint fk_state_city foreign key (state) references state (uf_code);

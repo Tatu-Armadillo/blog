@@ -32,18 +32,17 @@ public class Events {
     private String description;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "destinations", foreignKey = @ForeignKey(name = "fk_destinations_events"))
-    private Destinations destinations;
+    @JoinColumn(name = "city", foreignKey = @ForeignKey(name = "fk_city_events"))
+    private City city;
 
     public Events() { }
 
-    public Events(Long idEvents, LocalDate startDate, LocalDate endDate, String description,
-            Destinations destinations) {
-        this.idEvents = idEvents;
+    public Events(LocalDate startDate, LocalDate endDate, String description,
+            City city) {
         this.startDate = startDate;
         this.endDate = endDate;
         this.description = description;
-        this.destinations = destinations;
+        this.city = city;
     }
 
     public Long getIdEvents() {
@@ -78,12 +77,12 @@ public class Events {
         this.description = description;
     }
 
-    public Destinations getDestinations() {
-        return destinations;
+    public City getCity() {
+        return city;
     }
 
-    public void setDestinations(Destinations destinations) {
-        this.destinations = destinations;
+    public void setCity(City city) {
+        this.city = city;
     }
 
 }

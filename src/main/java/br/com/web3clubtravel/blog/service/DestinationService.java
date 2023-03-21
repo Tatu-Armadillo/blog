@@ -1,10 +1,11 @@
 package br.com.web3clubtravel.blog.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import br.com.web3clubtravel.blog.dto.DestinationsDto;
-import br.com.web3clubtravel.blog.exception.NegocioException;
 import br.com.web3clubtravel.blog.model.Destinations;
 import br.com.web3clubtravel.blog.repository.DestinationsRepository;
 
@@ -22,10 +23,8 @@ public class DestinationService {
         this.cityService = cityService;
     }
 
-    public Destinations findByNameCity(final String city) {
-        final var destination = this.destinationsRepository.findByNameCity(city)
-                .orElseThrow(() -> new NegocioException("Destino não cadastrado para esta cidade"));
-        return destination;
+    public Page<DestinationsDto> listDestinationsWithFilter(Pageable pageable, String filter) {
+        return this.destinationsRepository.findByNameCity(pageable, filter).map(DestinationsDto::of);
     }
 
     public Destinations save(final DestinationsDto dto) {

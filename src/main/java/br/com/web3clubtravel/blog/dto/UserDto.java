@@ -5,10 +5,12 @@ import br.com.web3clubtravel.blog.model.User;
 public class UserDto {
     private String username;
     private String password;
+    private String token;
 
     public UserDto(String username, String password) {
         this.username = username;
         this.password = password;
+        this.token = username + password;
     }
 
     public static UserDto of(User user) {
@@ -29,6 +31,10 @@ public class UserDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getToken() {
+        return token;
     }
 
 }

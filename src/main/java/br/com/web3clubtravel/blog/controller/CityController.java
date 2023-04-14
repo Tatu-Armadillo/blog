@@ -16,6 +16,10 @@ import br.com.web3clubtravel.blog.dto.CityDto;
 import br.com.web3clubtravel.blog.response.ResponseBasePaginado;
 import br.com.web3clubtravel.blog.service.CityService;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
@@ -31,8 +35,23 @@ public class CityController {
     }
 
     @GetMapping
-    @Operation(summary = "responsible for fetching cities by name", description = "responsible for fetching cities by name", tags = {
-            "City" })
+    @Operation(summary = "responsible for fetching cities by name", description = "responsible for fetching cities by name", 
+                tags = { "City" }, 
+                responses = { 
+                    @ApiResponse(description = "Success", responseCode = "200", 
+                        content = {
+                            @Content(mediaType = "application/json", 
+                                array = 
+                                    @ArraySchema(schema = @Schema(implementation = CityDto.class))
+                                    )
+                                }
+                            ),
+                    @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
+                    @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
+                    @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
+                    @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
+                    }
+                )
     public ResponseEntity<ResponseBasePaginado<List<CityDto>>> getCities(
             @PageableDefault(sort = "name", direction = Direction.ASC) Pageable pageable,
             @RequestParam(required = false, defaultValue = "") final String name) {

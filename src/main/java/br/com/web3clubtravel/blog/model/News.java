@@ -1,6 +1,7 @@
 package br.com.web3clubtravel.blog.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Set;
 
 import jakarta.persistence.Column;
@@ -12,6 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -37,6 +39,9 @@ public class News {
 
     @Column(name = "image")
     private byte[] image;
+
+    @OneToMany(mappedBy = "news", fetch = FetchType.EAGER)
+    private List<SubNews> subNews;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "destination_news", joinColumns = @JoinColumn(name = "news"), inverseJoinColumns = @JoinColumn(name = "destination"))
@@ -97,6 +102,14 @@ public class News {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public List<SubNews> getSubNews() {
+        return subNews;
+    }
+
+    public void setSubNews(List<SubNews> subNews) {
+        this.subNews = subNews;
     }
 
 }

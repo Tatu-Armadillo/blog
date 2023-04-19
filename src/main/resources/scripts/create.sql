@@ -19,10 +19,17 @@ create table contact(
 
 create table destinations(
     id_destinations bigint primary key auto_increment,
-    reference varchar(5000), -- Transform text string into fields
+    title varchar(500),
+    city bigint
+);
+
+create table reference(
+    id_reference bigint primary key auto_increment,
+    key_reference varchar(100),
+    valor varchar(500),
     image_link varchar(500),
     image mediumblob,
-    city bigint
+    destination bigint
 );
 
 create table country(
@@ -113,6 +120,7 @@ create table user_permission(
 );
 
 alter table destinations add constraint fk_city_destinations foreign key (city) references city (id_city);
+alter table reference add constraint fk_destination_reference foreign key (destination) references destinations (id_destinations);
 alter table sub_news add constraint fk_news_sub_news foreign key (news) references news (id_news);
 alter table destination_news add constraint fk_destination_news_news foreign key (news) references news (id_news);
 alter table destination_news add constraint fk_destination_news_destinations foreign key (destination) references destinations (id_destinations);

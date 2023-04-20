@@ -1,5 +1,7 @@
 package br.com.web3clubtravel.blog.model;
 
+import java.util.List;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -9,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -22,6 +25,9 @@ public class Destinations {
 
     @Column(name = "title")
     private String title;
+
+    @OneToMany(mappedBy = "destinations", fetch = FetchType.LAZY)
+    private List<Reference> references;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "city", foreignKey = @ForeignKey(name = "fk_city_destinations"))
@@ -48,6 +54,14 @@ public class Destinations {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public List<Reference> getReferences() {
+        return references;
+    }
+
+    public void setReferences(List<Reference> references) {
+        this.references = references;
     }
 
     public City getCity() {

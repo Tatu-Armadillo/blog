@@ -36,15 +36,13 @@ public class Reference {
     @JoinColumn(name = "destination", foreignKey = @ForeignKey(name = "fk_destination_reference"))
     private Destinations destinations;
 
-    public Reference() {
-    }
+    public Reference() { }
 
-    public Reference(Long idReference, String keyReference, String valor, String imageLink, byte[] image) {
-        this.idReference = idReference;
+    public Reference(String keyReference, String valor, String imageLink, Destinations destinations) {
         this.keyReference = keyReference;
         this.valor = valor;
         this.imageLink = imageLink;
-        this.image = image;
+        this.destinations = destinations;
     }
 
     public Long getIdReference() {
@@ -85,6 +83,14 @@ public class Reference {
 
     public void setImage(byte[] image) {
         this.image = image;
+    }
+
+    public Destinations getDestinations() {
+        return destinations;
+    }
+    
+    public void setDestinations(Destinations destinations) {
+        this.destinations = destinations;
     }
 
 }

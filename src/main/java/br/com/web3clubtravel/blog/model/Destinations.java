@@ -20,14 +20,8 @@ public class Destinations {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDestinations;
 
-    @Column(name = "reference")
-    private String reference;
-
-    @Column(name = "image_link")
-    private String imageLink;
-
-    @Column(name = "image")
-    private byte[] image;
+    @Column(name = "title")
+    private String title;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "city", foreignKey = @ForeignKey(name = "fk_city_destinations"))
@@ -35,9 +29,8 @@ public class Destinations {
 
     public Destinations() { }
 
-    public Destinations(String reference, String imageLink, City city) {
-        this.reference = reference;
-        this.imageLink = imageLink;
+    public Destinations(String title, City city) {
+        this.title = title;
         this.city = city;
     }
 
@@ -49,28 +42,12 @@ public class Destinations {
         this.idDestinations = idDestinations;
     }
 
-    public String getReference() {
-        return reference;
+    public String getTitle() {
+        return title;
     }
 
-    public void setReference(String reference) {
-        this.reference = reference;
-    }
-
-    public String getImageLink() {
-        return imageLink;
-    }
-
-    public void setImageLink(String imageLink) {
-        this.imageLink = imageLink;
-    }
-
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public City getCity() {

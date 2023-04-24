@@ -32,7 +32,8 @@ public class DestinationService {
     }
 
     public Page<DestinationsDto> listDestinationsWithFilter(Pageable pageable, String filter) {
-        return this.destinationsRepository.findByNameCity(pageable, filter).map(DestinationsDto::of);
+        var valor = this.destinationsRepository.findByNameCity(pageable, filter).map(DestinationsDto::of);
+        return valor;
     }
 
     public Destinations save(final DestinationsDto dto) {

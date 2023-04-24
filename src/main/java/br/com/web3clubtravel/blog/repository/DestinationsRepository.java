@@ -14,7 +14,7 @@ public interface DestinationsRepository extends JpaRepository<Destinations, Long
 
     @Query("SELECT destination FROM Destinations destination "
             + " INNER JOIN city c "
-            + " WHERE c.name = :filter ")
+            + " WHERE c.name LIKE CONCAT('%', :filter, '%')")
     Page<Destinations> findByNameCity(Pageable pageable, @Param("filter") String filter);
 
 }

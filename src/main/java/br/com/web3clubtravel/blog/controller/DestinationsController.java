@@ -60,7 +60,7 @@ public class DestinationsController {
 
     @GetMapping("/{idDestination}")
     @Operation(summary = "Search the destination by ID and its references", description = "Search the destination by ID and its references", tags = {
-            "News" }, responses = {
+            "Destinations" }, responses = {
                     @ApiResponse(description = "Success", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = DestinationsDto.class))),
                     @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
                     @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),

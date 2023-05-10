@@ -6,7 +6,7 @@ import org.springframework.data.domain.Page;
 import java.util.List;
 
 // @ApiModel(description = "Model responsável por encapsular todos responses paginados da api.")
-@JsonPropertyOrder({ "success", "message", "data", "paginacao" })
+@JsonPropertyOrder({ "success", "message", "data", "page" })
 public class ResponseBasePaginado<T> extends ResponseBase<T> {
 
   private static String MESSAGE_SUCCESS = "Operation performed successfully";

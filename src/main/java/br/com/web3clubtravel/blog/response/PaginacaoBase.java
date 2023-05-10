@@ -4,10 +4,10 @@ import org.springframework.data.domain.Page;
 
 public class PaginacaoBase {
 
-    private int pagina;
-    private int tamanhoPagina;
-    private int totalPaginas;
-    private long totalRegistros;
+    private int pageNumber;
+    private int pageSize;
+    private int totalPages;
+    private long totalElements;
 
     public PaginacaoBase() { }
 
@@ -19,35 +19,35 @@ public class PaginacaoBase {
     }
 
     public int getPageNumber() {
-        return this.pagina;
+        return this.pageNumber;
     }
 
     public void setPageNumber(final int pageNumber) {
-        this.pagina = (pageNumber + 1);
+        this.pageNumber = (pageNumber + 1);
     }
 
     public int getPageSize() {
-        return this.tamanhoPagina;
+        return this.pageSize;
     }
 
     public void setPageSize(final int pageSize) {
-        this.tamanhoPagina = pageSize;
+        this.pageSize = pageSize;
     }
 
     public int getTotalPages() {
-        return this.totalPaginas;
+        return this.totalPages;
     }
 
     public void setTotalPages(final int totalPages) {
-        this.totalPaginas = totalPages;
+        this.totalPages = totalPages;
     }
 
     public long getTotalElements() {
-        return this.totalRegistros;
+        return this.totalElements;
     }
 
     public void setTotalElements(final long totalElements) {
-        this.totalRegistros = totalElements;
+        this.totalElements = totalElements;
     }
 
 }

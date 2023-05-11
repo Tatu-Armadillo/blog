@@ -19,6 +19,7 @@ public class ContactService {
     }
 
     public Contact save(final ContactRecord record) {
+        // TODO criar validação de existencia do CONTATO
         final var contact = new Contact(record.name(), record.phone(), record.email());
         var response = this.contactRepository.save(contact);
         return response;

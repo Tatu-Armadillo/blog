@@ -3,11 +3,10 @@ package br.com.web3clubtravel.blog.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.web3clubtravel.blog.dto.TravelerDto;
 import br.com.web3clubtravel.blog.exception.NegocioException;
 import br.com.web3clubtravel.blog.model.Traveler;
 import br.com.web3clubtravel.blog.model.User;
-import br.com.web3clubtravel.blog.record.ContactRecord;
+import br.com.web3clubtravel.blog.record.TravelerRecord;
 import br.com.web3clubtravel.blog.repository.TravelerRepository;
 
 @Service
@@ -27,21 +26,20 @@ public class TravelerService {
         this.userService = userService;
     }
 
-    public TravelerDto save(final TravelerDto dto) {
-        final var contactDto = new ContactRecord(dto.getName(), dto.getPhone(), dto.getEmail());
-        final var contact = this.contactService.save(contactDto);
+    public Traveler save(final TravelerRecord dto) {
+        final var contact = this.contactService.save(dto.contact());
 
-        final var userDto = new User(dto.getEmail(), dto.getPassword());
+        final var userDto = new User(contact.getEmail(), dto.password());
         final var user = this.userService.save(userDto);
 
         final var traveler = new Traveler(contact, user);
         final var response = this.travelerRepository.save(traveler);
-        return TravelerDto.of(response);
+        return response;
     }
 
     public Traveler getTraveler(String username) {
         final var traveler = this.travelerRepository.getTravelerByUserName(username)
-                .orElseThrow(() -> new NegocioException("Viagente não encontrado"));
+                .orElseThrow(() -> new NegocioException("Traveler not found"));
         return traveler;
     }
 

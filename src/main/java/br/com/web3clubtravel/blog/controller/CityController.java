@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.web3clubtravel.blog.dto.CityDto;
+import br.com.web3clubtravel.blog.record.CityRecord;
 import br.com.web3clubtravel.blog.response.ResponseBasePaginado;
 import br.com.web3clubtravel.blog.service.CityService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,24 +35,17 @@ public class CityController {
     }
 
     @GetMapping
-    @Operation(summary = "responsible for fetching cities by name", description = "responsible for fetching cities by name", 
-                tags = { "City" }, 
-                responses = { 
-                    @ApiResponse(description = "Success", responseCode = "200", 
-                        content = {
-                            @Content(mediaType = "application/json", 
-                                array = 
-                                    @ArraySchema(schema = @Schema(implementation = CityDto.class))
-                                    )
-                                }
-                            ),
+    @Operation(summary = "responsible for fetching cities by name", description = "responsible for fetching cities by name", tags = {
+            "City" }, responses = {
+                    @ApiResponse(description = "Success", responseCode = "200", content = {
+                            @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = CityRecord.class)))
+                    }),
                     @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),
                     @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
                     @ApiResponse(description = "Not Found", responseCode = "404", content = @Content),
                     @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content),
-                    }
-                )
-    public ResponseEntity<ResponseBasePaginado<List<CityDto>>> getCities(
+            })
+    public ResponseEntity<ResponseBasePaginado<List<CityRecord>>> getCities(
             @PageableDefault(sort = "name", direction = Direction.ASC) Pageable pageable,
             @RequestParam(required = false, defaultValue = "") final String name) {
         final var reponse = this.cityService.getCitiesDto(pageable, name);

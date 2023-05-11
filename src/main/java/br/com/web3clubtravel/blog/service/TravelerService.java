@@ -3,11 +3,11 @@ package br.com.web3clubtravel.blog.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.web3clubtravel.blog.dto.ContactDto;
 import br.com.web3clubtravel.blog.dto.TravelerDto;
 import br.com.web3clubtravel.blog.exception.NegocioException;
 import br.com.web3clubtravel.blog.model.Traveler;
 import br.com.web3clubtravel.blog.model.User;
+import br.com.web3clubtravel.blog.record.ContactRecord;
 import br.com.web3clubtravel.blog.repository.TravelerRepository;
 
 @Service
@@ -28,7 +28,7 @@ public class TravelerService {
     }
 
     public TravelerDto save(final TravelerDto dto) {
-        final var contactDto = new ContactDto(dto.getName(), dto.getPhone(), dto.getEmail());
+        final var contactDto = new ContactRecord(dto.getName(), dto.getPhone(), dto.getEmail());
         final var contact = this.contactService.save(contactDto);
 
         final var userDto = new User(dto.getEmail(), dto.getPassword());

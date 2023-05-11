@@ -41,8 +41,7 @@ public class ContactController {
     public ResponseEntity<ResponseBase<ContactRecord>> save(
             @Valid @RequestBody ContactRecord record) {
         final var response = this.contactService.save(record);
-        final var base = ResponseBase
-                .of(new ContactRecord(response.getName(), response.getPhone(), response.getEmail()));
+        final var base = ResponseBase.of(ContactRecord.of(response));
         return ResponseEntity.status(201).body(base);
     }
 

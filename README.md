@@ -14,6 +14,7 @@ The following tools were used in the construction of the project:
 -   **[JPA](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/)**
 -   **[Hibernate](https://hibernate.org/orm/)**
 -   **[JUnit](https://junit.org/junit5/)**
+-   **[MySQL](https://www.mysql.com/)**
 
 ## 🛠️ Abrir e rodar o projeto
 

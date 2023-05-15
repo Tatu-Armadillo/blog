@@ -1,0 +1,28 @@
+package br.com.web3clubtravel.blog.record.news;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.web3clubtravel.blog.model.News;
+import br.com.web3clubtravel.blog.model.SubNews;
+
+public record NewsRecordList(
+        NewsRecord newsRecord,
+        List<NewsRecord> subNews) {
+
+    public static NewsRecordList of(News news) {
+        var principalNews = NewsRecord.of(news);
+        var subnews = populateListNewsDto(news);
+        return new NewsRecordList(principalNews, subnews);
+    }
+
+    private static List<NewsRecord> populateListNewsDto(News news) {
+        // TODO TRANSFORMAR EM UM COLECTION
+        List<NewsRecord> dtos = new ArrayList<>();
+        for (SubNews subNews : news.getSubNews()) {
+            var dto = NewsRecord.of(subNews);
+            dtos.add(dto);
+        }
+        return dtos;
+    }
+}

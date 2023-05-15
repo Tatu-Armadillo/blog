@@ -7,10 +7,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.web3clubtravel.blog.dto.news.NewsDto;
-import br.com.web3clubtravel.blog.dto.news.NewsDtoList;
 import br.com.web3clubtravel.blog.exception.NegocioException;
 import br.com.web3clubtravel.blog.model.News;
+import br.com.web3clubtravel.blog.record.news.NewsRecord;
+import br.com.web3clubtravel.blog.record.news.NewsRecordList;
 import br.com.web3clubtravel.blog.repository.NewsRepository;
 
 @Service
@@ -32,30 +32,30 @@ public class NewsService {
                 .orElseThrow(() -> new NegocioException("News not Found"));
     }
 
-    public Page<NewsDto> listNews(Pageable pageable) {
-        return this.newsRepository.findAll(pageable).map(NewsDto::of);
+    public Page<NewsRecord> listNews(Pageable pageable) {
+        return this.newsRepository.findAll(pageable).map(NewsRecord::of);
     }
 
-    public NewsDtoList showNews(final Long idNews) {
+    public NewsRecordList showNews(final Long idNews) {
         var newsDto = this.findById(idNews);
-        return NewsDtoList.of(newsDto);
+        return NewsRecordList.of(newsDto);
     }
 
-    public NewsDto save(NewsDtoList dto) {
-        var newsDto = dto.getNewsDto();
+    public NewsRecord save(NewsRecordList dto) {
+        var newsDto = dto.newsRecord();
         final var news = new News(
-                newsDto.getTitle(),
-                newsDto.getText(),
+                newsDto.title(),
+                newsDto.text(),
                 LocalDateTime.now(),
-                newsDto.getImageLink());
+                newsDto.imageLink());
         final var dataNews = this.newsRepository.save(news);
 
-        if (dto.getSubNews() != null && !dto.getSubNews().isEmpty()) {
-            var subNewsDto = dto.getSubNews();
+        if (dto.subNews() != null && !dto.subNews().isEmpty()) {
+            var subNewsDto = dto.subNews();
             this.subNewsService.save(subNewsDto, dataNews);
         }
 
-        return NewsDto.of(dataNews);
+        return NewsRecord.of(dataNews);
     }
 
 }

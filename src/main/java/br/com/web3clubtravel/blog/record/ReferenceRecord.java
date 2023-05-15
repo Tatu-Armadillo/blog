@@ -1,10 +1,11 @@
 package br.com.web3clubtravel.blog.record;
 
 import br.com.web3clubtravel.blog.model.Reference;
+import jakarta.validation.constraints.NotBlank;
 
 public record ReferenceRecord(
-        String keyReference,
-        String valor,
+        @NotBlank(message = "Required attribute <keyReference>") String keyReference,
+        @NotBlank(message = "Required attribute <valor>") String valor,
         String imageLink) {
 
     public static ReferenceRecord of(Reference reference) {

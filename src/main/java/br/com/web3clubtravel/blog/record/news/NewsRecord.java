@@ -6,12 +6,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 import br.com.web3clubtravel.blog.model.News;
 import br.com.web3clubtravel.blog.model.SubNews;
+import jakarta.validation.constraints.NotBlank;
 
 public record NewsRecord(
         Long idNews,
         @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime dateTime,
-        String title,
-        String text,
+        @NotBlank(message = "Required attribute <title>")String title,
+        @NotBlank(message = "Required attribute <title>")String text,
         String imageLink) {
 
     public static NewsRecord of(News news) {

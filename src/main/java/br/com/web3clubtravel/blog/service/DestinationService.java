@@ -5,9 +5,9 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.web3clubtravel.blog.dto.DestinationsDto;
 import br.com.web3clubtravel.blog.exception.NegocioException;
 import br.com.web3clubtravel.blog.model.Destinations;
+import br.com.web3clubtravel.blog.record.DestinationsRecord;
 import br.com.web3clubtravel.blog.repository.DestinationsRepository;
 
 @Service
@@ -32,18 +32,18 @@ public class DestinationService {
                 .orElseThrow(() -> new NegocioException("Destination not found"));
     }
 
-    public Page<DestinationsDto> listDestinationsWithFilter(Pageable pageable, String filter) {
-        var valor = this.destinationsRepository.findByNameCity(pageable, filter).map(DestinationsDto::of);
+    public Page<DestinationsRecord> listDestinationsWithFilter(Pageable pageable, String filter) {
+        var valor = this.destinationsRepository.findByNameCity(pageable, filter).map(DestinationsRecord::of);
         return valor;
     }
 
-    public Destinations save(final DestinationsDto dto) {
-        final var city = this.cityService.getCity(dto.getNameCity());
-        final var destination = new Destinations(dto.getTitle(), city);
+    public Destinations save(final DestinationsRecord dto) {
+        final var city = this.cityService.getCity(dto.nameCity());
+        final var destination = new Destinations(dto.title(), city);
         final var data = this.destinationsRepository.save(destination);
 
-        if (dto.getReferences() != null && !dto.getReferences().isEmpty()) {
-            this.referenceService.save(dto.getReferences(), data);
+        if (dto.references() != null && !dto.references().isEmpty()) {
+            this.referenceService.save(dto.references(), data);
         }
 
         final var response = this.findById(data.getIdDestinations());

@@ -28,7 +28,8 @@ public class DestinationService {
     }
 
     public Destinations findById(Long idDestination) {
-        return this.destinationsRepository.findById(idDestination).orElseThrow(() -> new NegocioException("Destination not found"));
+        return this.destinationsRepository.findById(idDestination)
+                .orElseThrow(() -> new NegocioException("Destination not found"));
     }
 
     public Page<DestinationsDto> listDestinationsWithFilter(Pageable pageable, String filter) {

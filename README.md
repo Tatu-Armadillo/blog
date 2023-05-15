@@ -16,11 +16,11 @@ The following tools were used in the construction of the project:
 -   **[JUnit](https://junit.org/junit5/)**
 -   **[MySQL](https://www.mysql.com/)**
 
-## 🛠️ Abrir e rodar o projeto
+# 🛠️ Abrir e rodar o projeto
 
-#### 🧭 Running the server application (Backend)
-### It is mandatory to run the database creation file [create.sql](https://github.com/Tatu-Armadillo/blog/blob/main/src/main/resources/scripts/create.sql)
-### File to fill in the countries, states and cities related to the project [destinations.sql](https://github.com/Tatu-Armadillo/blog/blob/main/src/main/resources/scripts/destinations/destinations.sql)
+### 🧭 Running the server application (Backend)
+#### It is mandatory to run the database creation file [create.sql](https://github.com/Tatu-Armadillo/blog/blob/main/src/main/resources/scripts/create.sql)
+#### File to fill in the countries, states and cities related to the project [destinations.sql](https://github.com/Tatu-Armadillo/blog/blob/main/src/main/resources/scripts/destinations/destinations.sql)
 
 
 #### The application will open on the http://localhost:8080/blog

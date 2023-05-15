@@ -26,7 +26,7 @@ The following tools were used in the construction of the project:
 #### The application will open on the http://localhost:8080/blog
 #### API documation swagger http://localhost:8080/blog/swagger-ui/index.html
 
-#### 🎲 Frontend (Web)
+# 🎲 Frontend (Web)
 > **[Front-End](https://github.com/Tatu-Armadillo/club-travel-front)**
 
 ## Contributors

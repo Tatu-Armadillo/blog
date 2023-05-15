@@ -6,30 +6,25 @@ Info do projeto
 
 ## ✔️ Tecnologias utilizadas
 The following tools were used in the construction of the project:
-#### **Serve**  ([Java](https://www.oracle.com/br/java/)  +  [Spring](https://spring.io/))
+#### **Serve** 
 
--   **[React Router Dom](https://reactrouter.com/en/main)**
--   **[React Icons](https://react-icons.github.io/react-icons/)**
--   **[Axios](https://axios-http.com/ptbr/docs/intro)**
--   **[Tailwindui](https://tailwindui.com/documentation)**
--   **[Styled-Components](https://styled-components.com/docs)**
--   **[React-Hook-Form](https://react-hook-form.com/)**
+-   **[Java](https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html)**
+-   **[Spring Boot](https://spring.io/)**
+-   **[Maven](https://maven.apache.org/guides/index.html)**
+-   **[JPA](https://docs.spring.io/spring-data/jpa/docs/current/reference/html/)**
+-   **[Hibernate](https://hibernate.org/orm/)**
+-   **[JUnit](https://junit.org/junit5/)**
 
 ## 🛠️ Abrir e rodar o projeto
 
 #### 🧭 Running the server application (Backend)
+### It is mandatory to run the database creation file [create.sql](https://github.com/Tatu-Armadillo/blog/blob/main/src/main/resources/scripts/create.sql)
+### File to fill in the countries, states and cities related to the project [destinations.sql](https://github.com/Tatu-Armadillo/blog/blob/main/src/main/resources/scripts/destinations/destinations.sql)
 
-```bash
 
-# Install the dependencies
-$ npm install or yarn 
+#### The application will open on the http://localhost:8080/blog
+#### API documation swagger http://localhost:8080/blog/swagger-ui/index.html
 
-# Run the application in development mode
-$ npm run dev or yarn dev
-
-# The application will open on the port: 5173 - go to http://localhost:5173/club-travel-front
-
-```
 #### 🎲 Frontend (Web)
 > **[Front-End](https://github.com/Tatu-Armadillo/club-travel-front)**
 
@@ -41,7 +36,7 @@ $ npm run dev or yarn dev
         <a href="https://www.linkedin.com/in/felipe-alves-de-oliveira-4607b8211/">
             <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/69278300?v=4" width="100px;"/>
             <br/>
-            <sub><b>Marcos Vinícius</b></sub>
+            <sub><b>Felipe Alves de Oliveira</b></sub>
         </a>
         <br/>
       <a href="https://github.com/Tatu-Armadillo" />

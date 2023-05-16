@@ -20,6 +20,7 @@ import br.com.web3clubtravel.blog.response.ResponseBase;
 import br.com.web3clubtravel.blog.response.ResponseBasePaginado;
 import br.com.web3clubtravel.blog.service.NewsService;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -79,7 +80,7 @@ public class NewsController {
                         @ApiResponse(description = "Unauthorized", responseCode = "401", content = @Content),
                         @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
         })
-        public ResponseEntity<ResponseBase<NewsRecord>> save(@RequestBody NewsRecordList dto) {
+        public ResponseEntity<ResponseBase<NewsRecord>> save(@Valid @RequestBody NewsRecordList dto) {
                 final var response = this.newsService.save(dto);
                 final var base = ResponseBasePaginado.of(response);
                 return ResponseEntity.ok(base);

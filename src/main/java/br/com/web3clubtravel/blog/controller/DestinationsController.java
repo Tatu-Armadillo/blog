@@ -20,6 +20,7 @@ import br.com.web3clubtravel.blog.response.ResponseBase;
 import br.com.web3clubtravel.blog.response.ResponseBasePaginado;
 import br.com.web3clubtravel.blog.service.DestinationService;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -82,7 +83,7 @@ public class DestinationsController {
                                         @ApiResponse(description = "Internal Error", responseCode = "500", content = @Content)
                         })
         public ResponseEntity<ResponseBase<DestinationsRecord>> save(
-                        @RequestBody DestinationsRecord dto) {
+                @Valid @RequestBody DestinationsRecord dto) {
                 final var destination = this.destinationService.save(dto);
                 final var response = DestinationsRecord.of(destination);
                 final var base = ResponseBase.of(response);

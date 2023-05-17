@@ -19,7 +19,6 @@ create table contact(
 
 create table destinations(
     id_destinations bigint primary key auto_increment,
-    title varchar(500),
     city bigint
 );
 

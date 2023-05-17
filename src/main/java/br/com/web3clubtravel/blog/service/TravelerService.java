@@ -3,7 +3,7 @@ package br.com.web3clubtravel.blog.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.web3clubtravel.blog.exception.NegocioException;
+import br.com.web3clubtravel.blog.exception.NotFoundException;
 import br.com.web3clubtravel.blog.model.Traveler;
 import br.com.web3clubtravel.blog.model.User;
 import br.com.web3clubtravel.blog.record.TravelerRecord;
@@ -39,7 +39,7 @@ public class TravelerService {
 
     public Traveler getTraveler(String username) {
         final var traveler = this.travelerRepository.getTravelerByUserName(username)
-                .orElseThrow(() -> new NegocioException("Traveler not found"));
+                .orElseThrow(() -> new NotFoundException("Traveler not found with username = " + username));
         return traveler;
     }
 

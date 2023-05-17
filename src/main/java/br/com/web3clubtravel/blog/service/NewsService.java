@@ -7,7 +7,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.web3clubtravel.blog.exception.NegocioException;
+import br.com.web3clubtravel.blog.exception.NotFoundException;
 import br.com.web3clubtravel.blog.model.News;
 import br.com.web3clubtravel.blog.record.news.NewsRecord;
 import br.com.web3clubtravel.blog.record.news.NewsRecordList;
@@ -29,7 +29,7 @@ public class NewsService {
 
     private News findById(final Long idNews) {
         return this.newsRepository.findById(idNews)
-                .orElseThrow(() -> new NegocioException("News not Found"));
+                .orElseThrow(() -> new NotFoundException("News not Found with id = " + idNews));
     }
 
     public Page<NewsRecord> listNews(Pageable pageable) {

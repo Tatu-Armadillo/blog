@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.web3clubtravel.blog.exception.NegocioException;
+import br.com.web3clubtravel.blog.exception.NotFoundException;
 import br.com.web3clubtravel.blog.model.City;
 import br.com.web3clubtravel.blog.record.CityRecord;
 import br.com.web3clubtravel.blog.repository.CityRepository;
@@ -22,7 +22,7 @@ public class CityService {
 
     public City getCity(final String city) {
         return this.cityRepository.findByNameCity(city)
-                .orElseThrow(() -> new NegocioException("City not found"));
+                .orElseThrow(() -> new NotFoundException("City not found with name = " + city));
     }
 
     public Page<CityRecord> getCitiesDto(final Pageable pageable, final String name) {

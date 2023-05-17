@@ -15,6 +15,11 @@ public class ResponseBase<T> {
         .setData(null)
         .setSuccess(true);
   }
+  public static ResponseBase<Void> errorMessage(final String message) {
+    return new ResponseBase<Void>()
+        .setSuccess(false)
+        .setMessage(message);
+  }
 
   public static <T> ResponseBase<T> of(final T data) {
     return new ResponseBase<T>()

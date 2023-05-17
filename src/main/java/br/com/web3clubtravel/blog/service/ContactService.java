@@ -3,7 +3,7 @@ package br.com.web3clubtravel.blog.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.web3clubtravel.blog.exception.NegocioException;
+import br.com.web3clubtravel.blog.exception.NotFoundException;
 import br.com.web3clubtravel.blog.model.Contact;
 import br.com.web3clubtravel.blog.record.ContactRecord;
 import br.com.web3clubtravel.blog.repository.ContactRepository;
@@ -27,7 +27,7 @@ public class ContactService {
 
     public Contact getContact(final String name) {
         return this.contactRepository.findContactByName(name)
-                .orElseThrow(() -> new NegocioException("Contact not found"));
+                .orElseThrow(() -> new NotFoundException("Contact not found with name " + name));
     }
 
 }

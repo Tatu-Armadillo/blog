@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.web3clubtravel.blog.exception.NegocioException;
+import br.com.web3clubtravel.blog.exception.NotFoundException;
 import br.com.web3clubtravel.blog.model.Destinations;
 import br.com.web3clubtravel.blog.record.DestinationsRecord;
 import br.com.web3clubtravel.blog.repository.DestinationsRepository;
@@ -29,7 +29,7 @@ public class DestinationService {
 
     public Destinations findById(Long idDestination) {
         return this.destinationsRepository.findById(idDestination)
-                .orElseThrow(() -> new NegocioException("Destination not found"));
+                .orElseThrow(() -> new NotFoundException("Destination not found with id = " + idDestination));
     }
 
     public Page<DestinationsRecord> listDestinationsWithFilter(Pageable pageable, String filter) {

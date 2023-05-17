@@ -5,7 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import br.com.web3clubtravel.blog.exception.NotFoundException;
+import br.com.web3clubtravel.blog.config.exception.NotFoundException;
 import br.com.web3clubtravel.blog.model.Destinations;
 import br.com.web3clubtravel.blog.record.DestinationsRecord;
 import br.com.web3clubtravel.blog.repository.DestinationsRepository;

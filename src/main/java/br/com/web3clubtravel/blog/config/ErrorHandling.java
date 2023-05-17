@@ -4,7 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
-import br.com.web3clubtravel.blog.exception.NotFoundException;
+import br.com.web3clubtravel.blog.config.exception.NotFoundException;
 import br.com.web3clubtravel.blog.response.ResponseBase;
 
 @RestControllerAdvice

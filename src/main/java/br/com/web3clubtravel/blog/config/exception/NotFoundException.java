@@ -1,4 +1,4 @@
-package br.com.web3clubtravel.blog.exception;
+package br.com.web3clubtravel.blog.config.exception;
 
 public class NotFoundException extends RuntimeException {
 

@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.web3clubtravel.blog.config.exception.NegocioException;
+import br.com.web3clubtravel.blog.config.exception.NotFoundException;
 import br.com.web3clubtravel.blog.dto.UserDto;
-import br.com.web3clubtravel.blog.exception.NegocioException;
-import br.com.web3clubtravel.blog.exception.NotFoundException;
 import br.com.web3clubtravel.blog.model.User;
 import br.com.web3clubtravel.blog.repository.PermissionRepository;
 import br.com.web3clubtravel.blog.repository.UserRepository;

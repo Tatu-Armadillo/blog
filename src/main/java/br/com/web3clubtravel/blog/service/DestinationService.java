@@ -39,7 +39,7 @@ public class DestinationService {
 
     public Destinations save(final DestinationsRecord dto) {
         final var city = this.cityService.getCity(dto.nameCity());
-        final var destination = new Destinations(dto.title(), city);
+        final var destination = new Destinations(city);
         final var data = this.destinationsRepository.save(destination);
 
         if (dto.references() != null && !dto.references().isEmpty()) {

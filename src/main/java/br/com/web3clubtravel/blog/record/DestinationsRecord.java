@@ -8,14 +8,12 @@ import jakarta.validation.constraints.NotBlank;
 
 public record DestinationsRecord(
         Long idDestinations,
-        @NotBlank(message = "Required attribute <title>") String title,
         @NotBlank(message = "Required attribute <nameCity>") String nameCity,
         @Valid List<ReferenceRecord> references) {
 
     public static DestinationsRecord of(Destinations destination) {
         return new DestinationsRecord(
                 destination.getIdDestinations(),
-                destination.getTitle(),
                 destination.getCity().getName(),
                 destination.getReferences() != null
                         ? destination.getReferences().stream().map(ReferenceRecord::of).toList()

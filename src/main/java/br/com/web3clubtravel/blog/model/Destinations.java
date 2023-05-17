@@ -23,9 +23,6 @@ public class Destinations {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idDestinations;
 
-    @Column(name = "title")
-    private String title;
-
     @OneToMany(mappedBy = "destinations", fetch = FetchType.LAZY)
     private List<Reference> references;
 
@@ -35,8 +32,7 @@ public class Destinations {
 
     public Destinations() { }
 
-    public Destinations(String title, City city) {
-        this.title = title;
+    public Destinations(City city) {
         this.city = city;
     }
 
@@ -46,14 +42,6 @@ public class Destinations {
 
     public void setIdDestinations(Long idDestinations) {
         this.idDestinations = idDestinations;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 
     public List<Reference> getReferences() {

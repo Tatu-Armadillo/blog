@@ -64,17 +64,17 @@ create table city(
 create table news(
     id_news bigint primary key auto_increment,
     title varchar(500) not null,
-    text varchar(1000) not null,
+    text varchar(10000) not null,
     date_time datetime not null,
-    image_link varchar(500),
+    image_link varchar(1000),
     image mediumblob    
 );
 
 create table sub_news(
     id_sub_news bigint primary key auto_increment,
     sub_title varchar(500),
-    text varchar(1000) not null,
-    image_link varchar(500),
+    text varchar(10000) not null,
+    image_link varchar(1000),
     image mediumblob,
     news bigint
 );
@@ -107,17 +107,6 @@ create table users(
     password varchar(255) not null
 );
 
-create table permission(
-    id_permission bigint primary key auto_increment,
-    description varchar(100)
-);
-
-create table user_permission(
-    id_user bigint,
-    id_permission bigint,
-    primary key ( id_user, id_permission)
-);
-
 alter table destinations add constraint fk_city_destinations foreign key (city) references city (id_city);
 alter table reference add constraint fk_destination_reference foreign key (destination) references destinations (id_destinations);
 alter table sub_news add constraint fk_news_sub_news foreign key (news) references news (id_news);
@@ -130,14 +119,10 @@ alter table state add constraint fk_country_state foreign key (country) referenc
 alter table state add constraint fk_region_state foreign key (region) references region (id_region);
 alter table city add constraint fk_state_city foreign key (state) references state (uf_code);
 
-alter table user_permission add constraint fk_user_permission_user foreign key (id_user) references users (id_user);
-alter table user_permission add constraint fk_user_permission_permission foreign key (id_permission) references permission (id_permission);
 alter table traveler add constraint fk_contact_traveler foreign key (contact) references contact (id_contact);
 alter table traveler add constraint fk_traveler_users foreign key (user) references users (id_user);
 
-insert into permission (description) values ("administrator"), ("traveler");
-insert into users (user_name, password) values ("admin", "123456");
-insert into user_permission (id_user, id_permission) values (1, 1);
-insert into user_permission (id_user, id_permission) values (1, 2);
+insert into users (user_name, password) values ("admin", "$2a$12$hyQEf3wzKhwrKtGqJxW/.eYYYhGgcxVdKuMP/C55OAATN9Yv8rwHK");
+
 insert into contact (name, phone, email) values ("web3travelclub", "4002-8922", "web3travelclub.@email.com");
 insert into traveler (contact, user) values (1, 1);

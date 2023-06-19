@@ -16,6 +16,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
@@ -32,6 +33,7 @@ public class TravelerController {
 
     @PostMapping
     @Transactional
+    @SecurityRequirement(name = "bearer-key")
     @Operation(summary = "Add a new traveler", description = "Add a new traveler", tags = { "Traveler" }, responses = {
             @ApiResponse(description = "Create", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = TravelerRecord.class))),
             @ApiResponse(description = "Bad Request", responseCode = "400", content = @Content),

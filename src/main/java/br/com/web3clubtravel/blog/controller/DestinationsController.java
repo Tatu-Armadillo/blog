@@ -26,6 +26,7 @@ import io.swagger.v3.oas.annotations.media.ArraySchema;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 @RestController
@@ -75,6 +76,7 @@ public class DestinationsController {
 
         @PostMapping
         @Transactional
+        @SecurityRequirement(name = "bearer-key")
         @Operation(summary = "Add a new destinations", description = "Add a new destinations", tags = {
                         "Destinations" }, responses = {
                                         @ApiResponse(description = "Create", responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = DestinationsRecord.class))),

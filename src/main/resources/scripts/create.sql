@@ -64,17 +64,17 @@ create table city(
 create table news(
     id_news bigint primary key auto_increment,
     title varchar(500) not null,
-    text varchar(1000) not null,
+    text varchar(10000) not null,
     date_time datetime not null,
-    image_link varchar(500),
+    image_link varchar(1000),
     image mediumblob    
 );
 
 create table sub_news(
     id_sub_news bigint primary key auto_increment,
     sub_title varchar(500),
-    text varchar(1000) not null,
-    image_link varchar(500),
+    text varchar(10000) not null,
+    image_link varchar(1000),
     image mediumblob,
     news bigint
 );

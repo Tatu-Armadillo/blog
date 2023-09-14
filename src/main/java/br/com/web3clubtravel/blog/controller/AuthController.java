@@ -48,7 +48,7 @@ public class AuthController {
         final var authentication = manager.authenticate(authenticationToken);
         final var tokenJWT = tokenService.createToken((User) authentication.getPrincipal());
 
-        final var base = ResponseBase.of(new TokenRecord(tokenJWT));
+        final var base = ResponseBase.of(new TokenRecord(data.username(), tokenJWT));
         return ResponseEntity.ok(base);
     }
 

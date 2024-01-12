@@ -20,11 +20,13 @@ public class TokenService {
     @Value("${api.security.token.secret}")
     private String secret;
 
+    private static final String ISSUER = "WebClubTravel";
+
     public String createToken(User user) {
         try {
             final var algorithm = Algorithm.HMAC256(secret);
             final String token = JWT.create()
-                    .withIssuer("Web Club Travel")
+                    .withIssuer(ISSUER)
                     .withSubject(user.getUsername())
                     .withExpiresAt(this.expirationDate())
                     .sign(algorithm);
@@ -38,7 +40,7 @@ public class TokenService {
         try {
             final var algorithm = Algorithm.HMAC256(secret);
             final var verifier = JWT.require(algorithm)
-                    .withIssuer("Web Club Travel")
+                    .withIssuer(ISSUER)
                     .build()
                     .verify(tokenJWT)
                     .getSubject();
